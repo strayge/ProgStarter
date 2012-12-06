@@ -1,4 +1,4 @@
-program project1;
+program ProgStarter;
 
 {$mode objfpc}{$H+}
 
@@ -89,7 +89,7 @@ begin
         #10+''+
         #10+'Created by Str@y (2012)';
 
-  ininame:=ExtractFileName(paramstr(0));    //get current exe-name
+  ininame:=paramstr(0);                    //get current path\exe-name
   SetLength(ininame, Length(ininame)-4);   // cut '.exe'
   ininame:=ininame+'.ini';
 

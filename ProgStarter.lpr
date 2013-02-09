@@ -60,6 +60,8 @@ function RunProgram(ininame: string; section: string): boolean;
 var
   ini: TIniFile;
   cmdline: string;
+  params: string;
+  i: integer;
 begin
   Result:=False;
   ini:=TIniFile.Create(ininame);
@@ -68,6 +70,12 @@ begin
       Result:=True;
       cmdline:=ini.ReadString(section,'CmdLine','');
       if trim(cmdline)='' then exit;
+
+      params:='';
+      for i := 1 to ParamCount do
+        params:=params+ParamStr(i);
+      if params<>'' then cmdline:=cmdline+' '+params;
+
       RunApp(cmdline,false);
     end;
   finally
